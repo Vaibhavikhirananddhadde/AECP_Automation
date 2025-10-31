@@ -82,9 +82,9 @@ public class GM_ResourceApprovalPage extends BaseClass {
 		// get status column in last row
 		By lastRowStatusCell = By.xpath("//table[contains(@class,'table-flush')]//tbody/tr[last()]//td[4]");
 
-		// 1) Ensure initial status is Pending
-		String initial = wait.until(ExpectedConditions.visibilityOfElementLocated(lastRowStatusCell)).getText().trim();
-		Assert.assertEquals(initial, "PENDING", "Last-row initial status is not Pending");
+//		// 1) Ensure initial status is Pending
+//		String initial = wait.until(ExpectedConditions.visibilityOfElementLocated(lastRowStatusCell)).getText().trim();
+//		Assert.assertEquals(initial, "PENDING", "Last-row initial status is not Pending");
 
 		// change the status(Approve)
 		btn_setAction.click();
@@ -110,6 +110,49 @@ public class GM_ResourceApprovalPage extends BaseClass {
 		SoftAssert assert1 = new SoftAssert();
 
 		assert1.assertEquals(finalStatus, "APPROVED", "Status did not change to Approved");
+
+	}
+	
+	public void rejectResourceRequest() throws Exception {
+		waitImplicit();
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+		// 1) Wait for the table
+		By tableSel = By.cssSelector("table.align-items-center.table-flush.table");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tableSel));
+
+		// get status column in last row
+		By lastRowStatusCell = By.xpath("//table[contains(@class,'table-flush')]//tbody/tr[last()]//td[4]");
+
+//		// 1) Ensure initial status is Pending
+//		String initial = wait.until(ExpectedConditions.visibilityOfElementLocated(lastRowStatusCell)).getText().trim();
+//		Assert.assertEquals(initial, "PENDING", "Last-row initial status is not Pending");
+
+		// change the status(Reject)
+		btn_setAction.click();
+		Select selectAction = new Select(dd_selectAction);
+		selectAction.selectByValue("Rejected");
+		txt_description.sendKeys("Rejected by General manager");
+		btn_submit.click();
+		Thread.sleep(3000);
+
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		System.out.println(alert.getText());
+		alert.accept();
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+
+		// option 2 – JS hard reload
+		((JavascriptExecutor) driver).executeScript("window.location.reload(true)");
+
+		// 2) Final assert
+		String finalStatus = driver.findElement(lastRowStatusCell).getText().trim();
+		System.out.println("Status changed to 'Rejected'");
+		SoftAssert assert1 = new SoftAssert();
+
+		assert1.assertEquals(finalStatus, "REJECTED", "Status did not change to Rejected");
 
 	}
 

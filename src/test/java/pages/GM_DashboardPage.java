@@ -1,8 +1,12 @@
 package pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BaseClass;
 
@@ -23,6 +27,9 @@ public class GM_DashboardPage extends BaseClass{
 	@FindBy(xpath="//a[text()='Project']")
 	WebElement navlink_Projects;
 	
+	@FindBy(xpath="//a[text()='Leave Management']")
+	WebElement navlink_leaveManagement;
+	
 	
 	public GM_DashboardPage() {
 		PageFactory.initElements(driver, this);
@@ -41,5 +48,16 @@ public class GM_DashboardPage extends BaseClass{
 	public void clickOnProjects() {
 		navlink_Projects.click();
 	}
+	
+	public void clickOnLeaveManagement() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebElement leaveLink = wait.until(ExpectedConditions.elementToBeClickable(navlink_leaveManagement));
+        leaveLink.click();
+		
+	}
 
+	
+	
+	
 }
+

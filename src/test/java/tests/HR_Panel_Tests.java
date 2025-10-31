@@ -3,7 +3,9 @@ package tests;
 import org.testng.annotations.Test;
 import base.BaseClass;
 import pages.GM_DashboardPage;
+import pages.GM_LeaveManagementPage;
 import pages.GM_ResourceApprovalPage;
+import pages.HR_AttendancePage;
 import pages.HR_DashboardPage;
 import pages.HR_LeaveManagementPage;
 import pages.HR_ResourceAllocationPage;
@@ -24,6 +26,8 @@ public class HR_Panel_Tests extends BaseClass{
 	public SEng_DashboardPage se_dashboard;
 	public SEng_ResourceRequestPage se_resourceRequest;
 	public HR_LeaveManagementPage hr_leaveManagement;
+	public GM_LeaveManagementPage gm_leaveManagement;
+	public HR_AttendancePage hr_attendance;
 	
  //HR can see ‘Total employees’, ‘OnTime’, ‘Late’, ‘Leave Requests’ count.
 	@Test
@@ -138,6 +142,39 @@ public class HR_Panel_Tests extends BaseClass{
 		hr_leaveManagement.applyLeave();
    }
     
+   //If HR apply Leave then it should be displayed in general manager panel.
+    @Test
+    public void AECP_HR_TC007() throws Exception {
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginHR();
+		hr_dashboard = new HR_DashboardPage();
+		hr_dashboard.clickOnLeaveManagement();
+		hr_leaveManagement = new HR_LeaveManagementPage();
+		hr_leaveManagement.applyLeave();
+	    hr_dashboard.logout();
+    	waitImplicit();
+    	land = new LandingPage();
+ 		land.clickLogin();
+ 		land.loginGM();
+ 		gm_dashboard = new GM_DashboardPage();
+ 	    gm_dashboard.clickOnLeaveManagement();
+ 	    Thread.sleep(3000);
+ 	    gm_leaveManagement = new GM_LeaveManagementPage();
+ 	    gm_leaveManagement.leaveRequestsDisplayed();
+    }
     
+    //HR should be able to see attendance details & download.
+    @Test
+    public void AECP_HR_TC008() throws Exception {
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginHR();
+		hr_dashboard = new HR_DashboardPage();
+		hr_dashboard.clickOnAttendance();
+		hr_attendance = new HR_AttendancePage();
+		hr_attendance.checkAttendanceDisplayed();
+		
+    }
     
 }

@@ -14,17 +14,6 @@
           <include name="AECP_GM_TC001"/>
         </methods>
       </class> <!-- tests.GM_Panel_Tests -->
-      <class name="tests.HR_Panel_Tests">
-        <methods>
-          <include name="tearDown"/>
-          <include name="setup"/>
-          <include name="setUp"/>
-          <include name="AECP_HR_TC003"/>
-          <include name="AECP_HR_TC005"/>
-          <include name="AECP_HR_TC002"/>
-          <include name="AECP_HR_TC006"/>
-        </methods>
-      </class> <!-- tests.HR_Panel_Tests -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

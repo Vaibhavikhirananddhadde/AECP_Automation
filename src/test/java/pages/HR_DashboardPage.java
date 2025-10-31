@@ -27,6 +27,18 @@ public class HR_DashboardPage extends BaseClass{
 	@FindBy(xpath="//a[text()='Leave Management']")
 	WebElement navLink_LeaveManagement;
 	
+	@FindBy(xpath="//span[@class='mb-0 text-sm font-weight-bold']")
+	WebElement lnk_greetingsProfile;
+	
+	@FindBy(xpath="(//span[text()='My profile'])[2]")
+	WebElement btn_MyProfile;
+	
+	@FindBy(xpath="(//span[text()='Logout'])[2]")
+	WebElement btn_Logout;
+	
+	@FindBy(xpath="//a[text()='Attendance']")
+	WebElement navLink_Attendance;
+	
 	public HR_DashboardPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -48,6 +60,16 @@ public class HR_DashboardPage extends BaseClass{
 	
 	public void clickOnLeaveManagement() {
 		navLink_LeaveManagement.click();
+	}
+	
+	public void logout() {
+		lnk_greetingsProfile.click();
+		waitExplicit(btn_Logout);
+		btn_Logout.click();
+	}
+	
+	public void clickOnAttendance() {
+		navLink_Attendance.click();
 	}
 	
 

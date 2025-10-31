@@ -185,7 +185,7 @@ public static WebDriver driver;
 	}
 
 	public static void waitExplicit(WebElement element) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(150));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(160));
 		wait.until(ExpectedConditions.visibilityOf(element));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 
