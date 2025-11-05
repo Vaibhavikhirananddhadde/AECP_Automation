@@ -7,6 +7,8 @@ import pages.GM_LeaveManagementPage;
 import pages.GM_ResourceApprovalPage;
 import pages.HR_AttendancePage;
 import pages.HR_DashboardPage;
+import pages.HR_DepartmentPage;
+import pages.HR_EmployeesPage;
 import pages.HR_LeaveManagementPage;
 import pages.HR_ResourceAllocationPage;
 import pages.LandingPage;
@@ -28,6 +30,9 @@ public class HR_Panel_Tests extends BaseClass{
 	public HR_LeaveManagementPage hr_leaveManagement;
 	public GM_LeaveManagementPage gm_leaveManagement;
 	public HR_AttendancePage hr_attendance;
+	public HR_EmployeesPage hr_employees;
+	public HR_DepartmentPage hr_department;
+	
 	
  //HR can see ‘Total employees’, ‘OnTime’, ‘Late’, ‘Leave Requests’ count.
 	@Test
@@ -158,7 +163,7 @@ public class HR_Panel_Tests extends BaseClass{
  		land.clickLogin();
  		land.loginGM();
  		gm_dashboard = new GM_DashboardPage();
- 	    gm_dashboard.clickOnLeaveManagement();
+ 	    gm_dashboard.clickOnLeaveManagement(); 
  	    Thread.sleep(3000);
  	    gm_leaveManagement = new GM_LeaveManagementPage();
  	    gm_leaveManagement.leaveRequestsDisplayed();
@@ -175,6 +180,43 @@ public class HR_Panel_Tests extends BaseClass{
 		hr_attendance = new HR_AttendancePage();
 		hr_attendance.checkAttendanceDisplayed();
 		
+    }
+    
+    //HR can add employee, Edit & Delete employee / Invite employee.
+    @Test
+    public void AECP_HR_TC009() throws Exception {
+    	waitImplicit();
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginHR();
+		hr_dashboard = new HR_DashboardPage();
+		hr_dashboard.clickOnEmployee();
+		System.out.println("Clicked on Employees from nav bar.");
+		hr_employees = new HR_EmployeesPage();
+		hr_employees.addEmployee();	
+		System.out.println("Employee added successfully.");
+		hr_employees.editEmployee();
+		System.out.println("Employee details updated successfully");
+		hr_employees.deleteEmployee();
+		System.out.println("Employee deleted successfully.");
+    }
+    
+    //HR can Add, Delete Department.
+    @Test
+    public void AECP_HR_TC010() throws Exception {
+    	waitImplicit();
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginHR();
+		hr_dashboard = new HR_DashboardPage();
+		hr_dashboard.clickOnDepartment();
+		hr_department = new HR_DepartmentPage();
+		hr_department.addingDepartment();
+		System.out.println("Department added successfully");
+		waitImplicit();
+		scrollDown();
+		hr_department.deleteDepartment();
+		System.out.println("Department deleted successfully");
     }
     
 }

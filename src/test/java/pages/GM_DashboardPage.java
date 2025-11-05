@@ -30,6 +30,12 @@ public class GM_DashboardPage extends BaseClass{
 	@FindBy(xpath="//a[text()='Leave Management']")
 	WebElement navlink_leaveManagement;
 	
+	@FindBy(xpath="//a[text()='Client']")
+	WebElement navlink_client;
+	
+	@FindBy(xpath="//a[text()='Project']")
+	WebElement navlink_project;
+	
 	
 	public GM_DashboardPage() {
 		PageFactory.initElements(driver, this);
@@ -54,6 +60,14 @@ public class GM_DashboardPage extends BaseClass{
         WebElement leaveLink = wait.until(ExpectedConditions.elementToBeClickable(navlink_leaveManagement));
         leaveLink.click();
 		
+	}
+	
+	public void clickOnClient() {
+		navlink_client.click();
+	}
+	
+	public void clickOnProject() {
+		navlink_project.click();
 	}
 
 	

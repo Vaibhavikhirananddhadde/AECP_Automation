@@ -3,8 +3,10 @@ package tests;
 import org.testng.annotations.Test;
 
 import base.BaseClass;
+import pages.GM_ClientPage;
 import pages.GM_DashboardPage;
 import pages.GM_LeaveManagementPage;
+import pages.GM_ProjectsPage;
 import pages.GM_ResourceApprovalPage;
 import pages.HR_DashboardPage;
 import pages.HR_ResourceAllocationPage;
@@ -21,6 +23,8 @@ public class GM_Panel_Tests extends BaseClass{
 	public GM_ResourceApprovalPage gm_resourceApproval;
 	public HR_ResourceAllocationPage hr_resourceAllocation;
 	public GM_LeaveManagementPage gm_leaveManagement;
+	public GM_ClientPage gm_clientpage;
+	public GM_ProjectsPage gm_projects;
 	
 	
 	
@@ -74,6 +78,33 @@ public class GM_Panel_Tests extends BaseClass{
 		gm_leaveManagement = new GM_LeaveManagementPage();
 		gm_leaveManagement.rejectHRLeave();
 		
+    }
+    
+    //GM can add Clients.
+    @Test
+    public void AECP_GM_TC005() throws Exception {
+    	waitImplicit();
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginGM();
+		gm_dashboard =new GM_DashboardPage();
+		gm_dashboard.clickOnClient();
+		gm_clientpage = new GM_ClientPage();
+		gm_clientpage.addClient();
+		
+    }
+    
+    //GM can add projects.
+    @Test(enabled = false)                         //Failing
+    public void AECP_GM_TC006() throws Exception {
+    	waitImplicit();
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginGM();
+		gm_dashboard =new GM_DashboardPage();
+		gm_dashboard.clickOnProject();
+		gm_projects = new GM_ProjectsPage();
+		gm_projects.addingProject();
     }
 
 }

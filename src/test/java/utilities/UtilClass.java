@@ -666,5 +666,38 @@ public static WebDriver driver;
 		    }
 	  
 	  }
+	  
+	  public void selectFromReactDropdown(By optionsLocator, String valueToSelect) {
+		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		    int attempts = 0;
+
+		    while (attempts < 3) {
+		        try {
+		            // Wait until all options are visible
+		            List<WebElement> options = wait.until(
+		                    ExpectedConditions.visibilityOfAllElementsLocatedBy(optionsLocator)
+		            );
+
+		            for (WebElement option : options) {
+		                String optionText = option.getText().trim();
+		                System.out.println("Option: " + optionText);
+
+		                if (optionText.equalsIgnoreCase(valueToSelect)) {
+		                    option.click();
+		                    return; // ✅ done, exit method
+		                }
+		            }
+
+		            // If we reached here, option not found
+		            throw new RuntimeException("Value '" + valueToSelect + "' not found in dropdown");
+
+		        } catch (StaleElementReferenceException e) {
+		            System.out.println("StaleElementReferenceException caught. Retrying... Attempt: " + (attempts + 1));
+		            attempts++;
+		        }
+		    }
+
+		    throw new RuntimeException("Failed to select '" + valueToSelect + "' due to repeated stale elements.");
+		}
 
 }

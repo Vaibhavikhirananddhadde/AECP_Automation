@@ -39,6 +39,15 @@ public class HR_DashboardPage extends BaseClass{
 	@FindBy(xpath="//a[text()='Attendance']")
 	WebElement navLink_Attendance;
 	
+	@FindBy(xpath="//span[text()='HR Management']")
+	WebElement navLink_HRmanagement;
+	
+	@FindBy(xpath="//span[text()='Employees']")
+	WebElement navLink_Employee;
+	
+	@FindBy(xpath="//span[text()='Department']")
+	WebElement navLink_Department;
+	
 	public HR_DashboardPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -70,6 +79,16 @@ public class HR_DashboardPage extends BaseClass{
 	
 	public void clickOnAttendance() {
 		navLink_Attendance.click();
+	}
+	
+	public void clickOnEmployee() {
+		navLink_HRmanagement.click();
+		navLink_Employee.click();
+	}
+	
+	public void clickOnDepartment() {
+		navLink_HRmanagement.click();
+		navLink_Department.click();
 	}
 	
 
