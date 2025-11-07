@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.HR_Panel_Tests">
+      <class name="tests.PM_Panel_Tests">
         <methods>
-          <include name="AECP_HR_TC010"/>
+          <include name="AECP_PM_TC004"/>
           <include name="tearDown"/>
           <include name="setup"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- tests.HR_Panel_Tests -->
+      </class> <!-- tests.PM_Panel_Tests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

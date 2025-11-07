@@ -48,6 +48,9 @@ public class HR_DashboardPage extends BaseClass{
 	@FindBy(xpath="//span[text()='Department']")
 	WebElement navLink_Department;
 	
+	@FindBy(xpath="//span[text()='Role']")
+	WebElement navLink_Role;
+	
 	public HR_DashboardPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -91,5 +94,9 @@ public class HR_DashboardPage extends BaseClass{
 		navLink_Department.click();
 	}
 	
+	public void clickOnRole() {
+		navLink_HRmanagement.click();
+		navLink_Role.click();
+	}
 
 }

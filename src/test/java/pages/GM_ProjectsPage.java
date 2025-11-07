@@ -1,14 +1,10 @@
 package pages;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BaseClass;
 
@@ -31,8 +27,7 @@ public class GM_ProjectsPage extends BaseClass{
 	@FindBy(xpath="(//div[@class='react-select__control css-13cymwt-control'])[1]")
 	WebElement dd_selectDepartments;
 	
-	@FindBy(xpath="(//div[@class='react-select__control css-13cymwt-control'])[2]")
-	WebElement dd_selectMembers;
+	@FindBy(xpath="(//div[@class='react-select__indicators css-1wy0on6'])[2]")	WebElement dd_selectMembers;
 	
 	@FindBy(id="input-starting")
 	WebElement date_start;
@@ -84,9 +79,8 @@ public class GM_ProjectsPage extends BaseClass{
 		
 		// 2) Select Member (React dropdown)
 	    // -----------------------------
-	    waitExplicit(dd_selectMembers);
-	   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	   wait.until(ExpectedConditions.elementToBeClickable(dd_selectMembers));
+	   //driver.findElement(By.xpath("(//div[@class='react-select__indicators css-1wy0on6'])[2]")).click();
+	  
 	   dd_selectMembers.click();
 	    selectFromReactDropdown(
 	            By.xpath("//div[@id='react-select-3-listbox']/div"),

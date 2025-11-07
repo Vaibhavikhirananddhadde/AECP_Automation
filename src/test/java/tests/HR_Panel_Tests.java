@@ -11,6 +11,7 @@ import pages.HR_DepartmentPage;
 import pages.HR_EmployeesPage;
 import pages.HR_LeaveManagementPage;
 import pages.HR_ResourceAllocationPage;
+import pages.HR_RolePage;
 import pages.LandingPage;
 import pages.PM_DashboardPage;
 import pages.PM_ResourceRequisitionPage;
@@ -32,6 +33,7 @@ public class HR_Panel_Tests extends BaseClass{
 	public HR_AttendancePage hr_attendance;
 	public HR_EmployeesPage hr_employees;
 	public HR_DepartmentPage hr_department;
+	public HR_RolePage hr_role;
 	
 	
  //HR can see ‘Total employees’, ‘OnTime’, ‘Late’, ‘Leave Requests’ count.
@@ -217,6 +219,22 @@ public class HR_Panel_Tests extends BaseClass{
 		scrollDown();
 		hr_department.deleteDepartment();
 		System.out.println("Department deleted successfully");
+    }
+    
+    //HR can edit Roles.
+    @Test
+    public void AECP_HR_TC011() throws Exception {
+    	waitImplicit();
+    	land = new LandingPage();
+		land.clickLogin();
+		land.loginHR();
+		hr_dashboard = new HR_DashboardPage();
+		hr_dashboard.clickOnRole();
+		hr_role = new HR_RolePage();
+		hr_role.editRole();
+		System.out.println("Role got edited successfully");
+		hr_role.cancelEditRole();
+		System.out.println("Cancel Edit role is functioning well.");
     }
     
 }

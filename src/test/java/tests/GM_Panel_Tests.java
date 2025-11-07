@@ -95,7 +95,7 @@ public class GM_Panel_Tests extends BaseClass{
     }
     
     //GM can add projects.
-    @Test(enabled = false)                         //Failing
+    @Test(enabled = true)                         //Failing
     public void AECP_GM_TC006() throws Exception {
     	waitImplicit();
     	land = new LandingPage();
