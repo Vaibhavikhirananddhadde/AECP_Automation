@@ -34,6 +34,8 @@ public class PM_DashboardPage extends BaseClass{
 	
 	@FindBy(xpath="//a[text()='Task Report']") WebElement navlink_TaskReport;
 	
+	@FindBy(xpath="//a[text()='Leave Management']") WebElement navlink_LeaveManagement;
+	
 	public PM_DashboardPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -90,6 +92,10 @@ public class PM_DashboardPage extends BaseClass{
 		String exp_URL="https://aecp.aecearth.io/project-admin/project-management/Report";
 		String act_URL=driver.getCurrentUrl();
 		Assert.assertEquals(act_URL, exp_URL, "Task Report page is not displayed!");
+	}
+	
+	public void clickOnLeaveManagement() {
+		navlink_LeaveManagement.click();
 	}
 
 }

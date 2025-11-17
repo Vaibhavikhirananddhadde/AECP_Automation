@@ -17,6 +17,7 @@ import pages.LandingPage;
 import pages.PM_BudgetPage;
 import pages.PM_DashboardPage;
 import pages.PM_EngineersPage;
+import pages.PM_LeaveManagementPage;
 import pages.PM_MaterialRequestPage;
 import pages.PM_ProjectPage;
 import pages.PM_ResourceRequisitionPage;
@@ -47,6 +48,7 @@ public class PM_Panel_Tests extends BaseClass{
 	public PM_EngineersPage pm_engineer;
 	public PM_BudgetPage pm_budget;
 	public PM_TaskReportPage pm_taskReport;
+	public PM_LeaveManagementPage pm_leaveManagement;
 	
 	
 	//Project Manager should see Total projects, To Do projects, In-Progress projects, Completed Tasks in the dashboard.
@@ -156,6 +158,21 @@ public class PM_Panel_Tests extends BaseClass{
 		pm_dashboard.clickOnSiteEngineer();
 		pm_engineer = new PM_EngineersPage();
 		pm_engineer.Check_SiteEngineersList();
+  }
+  
+  // Project Manager can apply for Leave.
+  @Test
+  public void AECP_PM_TC009() throws Exception {
+	  waitImplicit();
+	  land= new LandingPage();
+		land.clickLogin();
+		land.loginPM();
+		pm_dashboard = new PM_DashboardPage();
+		pm_dashboard.clickOnLeaveManagement();
+		pm_leaveManagement = new PM_LeaveManagementPage();
+		pm_leaveManagement.applyLeave();
+		
+	  
   }
 
 }

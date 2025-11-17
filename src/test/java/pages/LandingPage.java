@@ -100,6 +100,23 @@ public class LandingPage extends BaseClass{
 		
 	}
 	
+	public void loginStore() throws Exception {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		txt_email.clear();
+		txt_email.sendKeys(readProperty("Store_username", "/src/test/resources/configfiles/config.properties"));
+		waitImplicit();
+		txt_password.clear();
+		txt_password.sendKeys(readProperty("Store_password", "/src/test/resources/configfiles/config.properties"));
+		waitImplicit();
+		btn_Login.click();
+		Thread.sleep(3000);
+		//check logged in successfully
+		String actual_URL = driver.getCurrentUrl();
+		String expected_URL = "https://aecp.aecearth.io/store-admin/store-management/dashboard4";
+		Assert.assertEquals(actual_URL, expected_URL);
+		
+	}
+	
 	
 	
 }
